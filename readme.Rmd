@@ -1,16 +1,18 @@
 ---
-title: "full stack data-science finance (small) project"
+title: "Strathclyde Business School, finTech MSc - becoming an effective technology analyst - fall 2018"
 author: "Olivier Bauthéac"
-output: github_document
+output: 
+  github_document:
+    toc: true
 ---
 
+# full stack data-science finance (small) project
 
+## *preprocessing (ELT)*
 
-# preprocessing (ELT)
+### *extract*
 
-## extract
-
-### minimum required
+#### minimum required
 
 In an excel woorkbook, query Bloomberg for historical (bdh) as well as contemporaneous (bdp) data for a market index as well as a broad cross-section of U.S. stocks. Historical data should be retrieved from October 1^st^ 2016 to today at the daily frequency on individual ticker specific sheets (one sheet per name). All names' contemporaneous data, on the other hand, should sit on a single sheet. The Bloomberg ticker for the market index is 'RAY Index' while those for the corporation names are listed below:
 
@@ -59,13 +61,13 @@ sales                 | SALES_REV_TURN
 Contemporaneous data on the other hand should include the number of shares outstanding, number of directors on the board, number of women on the board, number of board meetings per year, long company name and companie description. Explore Bloomberg to find the corresponding field symbols.
 
 
-### going further
+#### going further
 
 * Using VBA, make your workbook updatable. Ammend your workbook so that it retrieves up to date data in one clic.
   + Hint 1. Update doesn't necessarily mean adding most recent values to an existing time series. Requerying the whole data up to the most recent date would work as well.
   + Hint 2. Inspect the BQL syntax in Bloomberg formula cells, ammend accordingly.
 
-* Using VBA, make your workbook flexible. Ammend your workbook so that it can retrieve data for any set of stocks/indexes & market/book fields at various frequencies (year, month, week, day), from and to any date.
+* Using VBA, make your workbook flexible. Ammend your workbook so that it can retrieve data for any set of stocks/indexes & market/book fields at various frequencies (year, month, week, day), from and to any date. The user should only have to list the tickers/fields and set the parameters on one sheet.
   + Hint 1. Object oriented programming could help; excel table objects in particular.
   + Hint 2. Create an update sheet with tickers list, parameters (frequency, start and end dates) and fields. This sheet could also be use to host the contemporaneous dataset.
 
@@ -73,12 +75,11 @@ Contemporaneous data on the other hand should include the number of shares outst
   + Hint 1. VBA events could help.
   
 
-You now have a fully customizable & portable tool to retrieve financial data from Bloomberg and now it's time to use it.
+You now have a fully portable & customizable tool to retrieve financial data from Bloomberg and it's now time to use it.
 
 
 
-## Load
-
+### *load*
 ```{r, include = FALSE}
 library(readxl); library(dplyr); library(data.table)
 
@@ -98,8 +99,7 @@ historical <- lapply(tickers, function(x) read_excel(path, sheet = x, skip = 1L)
   rbindlist()
 ```
 
-In R or Python (examplesolutions will be provided for both programming languages), load the workbook data in memory. Organise the data in two dataframes, one for the historical times series, the other for static (contemporaneous) data. The time series dataframe should have a two-level row index including tickers & dates while columns should host the corresponding time series; the dataframe structure should look as follow:
-
+Using R or Python (example solutions will be provided for both programming languages), load the workbook data in memory. Organise the data in two dataframes, one for the historical times series, the other for static (contemporaneous) data. The time series dataframe should have a two-level row index including tickers & dates while columns should host the corresponding time series; the dataframe should broadly look like this:
 
 ```{r, message = FALSE, echo = FALSE}
 as_tibble(select(historical, ticker, everything()))
@@ -108,7 +108,7 @@ as_tibble(select(historical, ticker, everything()))
 The static dataset on the other hand should be row-indexed by tickers and have columns hosting the corresponding static fields.
 
 
-## Transform
+### *transform*
 
 
 

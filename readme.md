@@ -1,12 +1,20 @@
-full stack data-science finance (small) project
+[![Travis build status](https://travis-ci.org/strathclyde/befftafall2018.svg?branch=master)](https://travis-ci.org/strathclyde/befftafall2018)
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/strathclyde/befftafall2018?branch=master&svg=true)](https://ci.appveyor.com/project/strathclyde/befftafall2018)
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)  
+
+
+Strathclyde Business School, finTech MSc - becoming an effective
+technology analyst - fall 2018
 ================
 Olivier Bauthéac
 
-# preprocessing (ELT)
+# full stack data-science finance (small) project
 
-## extract
+## *preprocessing (ELT)*
 
-### minimum required
+### *extract*
+
+#### minimum required
 
 In an excel woorkbook, query Bloomberg for historical (bdh) as well as
 contemporaneous (bdp) data for a market index as well as a broad
@@ -66,7 +74,7 @@ the board, number of board meetings per year, long company name and
 companie description. Explore Bloomberg to find the corresponding field
 symbols.
 
-### going further
+#### going further
 
   - Using VBA, make your workbook updatable. Ammend your workbook so
     that it retrieves up to date data in one clic.
@@ -78,7 +86,8 @@ symbols.
   - Using VBA, make your workbook flexible. Ammend your workbook so that
     it can retrieve data for any set of stocks/indexes & market/book
     fields at various frequencies (year, month, week, day), from and to
-    any date.
+    any date. The user should only have to list the tickers/fields and
+    set the parameters on one sheet.
       - Hint 1. Object oriented programming could help; excel table
         objects in particular.
       - Hint 2. Create an update sheet with tickers list, parameters
@@ -89,18 +98,18 @@ symbols.
     the contemporaneous dataset; try to fix that problem somehow.
       - Hint 1. VBA events could help.
 
-You now have a fully customizable & portable tool to retrieve financial
-data from Bloomberg and now it’s time to use it.
+You now have a fully portable & customizable tool to retrieve financial
+data from Bloomberg and it’s now time to use it.
 
-## Load
+### *load*
 
-In R or Python (examplesolutions will be provided for both programming
-languages), load the workbook data in memory. Organise the data in two
-dataframes, one for the historical times series, the other for static
-(contemporaneous) data. The time series dataframe should have a
-two-level row index including tickers & dates while columns should host
-the corresponding time series; the dataframe structure should look as
-follow:
+Using R or Python (example solutions will be provided for both
+programming languages), load the workbook data in memory. Organise the
+data in two dataframes, one for the historical times series, the other
+for static (contemporaneous) data. The time series dataframe should have
+a two-level row index including tickers & dates while columns should
+host the corresponding time series; the dataframe should broadly look
+like this:
 
     ## # A tibble: 62,696 x 11
     ##    ticker    Date       PX_LAST BOOK_VAL_PER_SH TRAIL_12M_EPS
@@ -121,26 +130,6 @@ follow:
     ## #   SALES_REV_TURN <dbl>
 
 The static dataset on the other hand should be row-indexed by tickers
-<<<<<<< HEAD
 and have columns hosting the corresponding static fields.
-=======
-and have columns hosting the corresponding static fields; the dataframe
-structure should look as follow:
 
-    ## # A tibble: 120 x 5
-    ##    ticker  EQY_SH_OUT NUMBER_OF_DIRECTO~ NUMBER_OF_WOMEN~ BOARD_MEETINGS_~
-    ##    <chr>        <dbl>              <dbl>            <dbl>            <dbl>
-    ##  1 KHC US~      1219.                 11                2                5
-    ##  2 PSX US~       464.                  9                3                6
-    ##  3 VLO US~       427.                 10                4                7
-    ##  4 ADM US~       560.                 12                2               10
-    ##  5 HPE US~      1472.                 12                5               13
-    ##  6 NUE US~       316.                  8                2                4
-    ##  7 DHI US~       377.                  5                1                7
-    ##  8 HFC US~       176.                 11                2               15
-    ##  9 KSU US~       102.                 11                3                5
-    ## 10 WRK US~       255.                 13                2                8
-    ## # ... with 110 more rows
->>>>>>> 5eecc7b5e711901e192970d8e28a7ef71635f091
-
-## Transform
+### *transform*

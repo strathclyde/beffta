@@ -46,7 +46,14 @@
   <a href="reference/index.html">Reference</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/strathclyde/befftafall2018">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -61,18 +68,20 @@
 
     
     
-
-<p><a href="https://ci.appveyor.com/project/strathclyde/befftafall2018"><img src="https://ci.appveyor.com/api/projects/status/github/strathclyde/befftafall2018?branch=master&amp;svg=true" alt="AppVeyor build status"></a></p>
-<p><a href="https://www.tidyverse.org/lifecycle/#experimental"><img src="https://img.shields.io/badge/lifecycle-experimental-orange.svg" alt="lifecycle"></a></p>
-<div id="preprocessing-elt" class="section level1">
+<div id="full-stack-data-science-finance-small-project" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#preprocessing-elt" class="anchor"></a>preprocessing (ELT)</h1></div>
-<div id="extract" class="section level2">
+<a href="#full-stack-data-science-finance-small-project" class="anchor"></a>full stack data-science finance (small) project</h1></div>
+<div id="preprocessing-elt" class="section level2">
 <h2 class="hasAnchor">
-<a href="#extract" class="anchor"></a>extract</h2>
-<div id="minimum-required" class="section level3">
+<a href="#preprocessing-elt" class="anchor"></a><em>preprocessing (ELT)</em>
+</h2>
+<div id="extract" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minimum-required" class="anchor"></a>minimum required</h3>
+<a href="#extract" class="anchor"></a><em>extract</em>
+</h3>
+<div id="minimum-required" class="section level4">
+<h4 class="hasAnchor">
+<a href="#minimum-required" class="anchor"></a>minimum required</h4>
 <p>In an excel woorkbook, query Bloomberg for historical (bdh) as well as contemporaneous (bdp) data for a market index as well as a broad cross-section of U.S. stocks. Historical data should be retrieved from October 1<sup>st</sup> 2016 to today at the daily frequency on individual ticker specific sheets (one sheet per name). All names’ contemporaneous data, on the other hand, should sit on a single sheet. The Bloomberg ticker for the market index is ‘RAY Index’ while those for the corporation names are listed below:</p>
 <table class="table">
 <thead><tr class="header">
@@ -300,9 +309,9 @@
 </table>
 <p>Contemporaneous data on the other hand should include the number of shares outstanding, number of directors on the board, number of women on the board, number of board meetings per year, long company name and companie description. Explore Bloomberg to find the corresponding field symbols.</p>
 </div>
-<div id="going-further" class="section level3">
-<h3 class="hasAnchor">
-<a href="#going-further" class="anchor"></a>going further</h3>
+<div id="going-further" class="section level4">
+<h4 class="hasAnchor">
+<a href="#going-further" class="anchor"></a>going further</h4>
 <ul>
 <li>Using VBA, make your workbook updatable. Ammend your workbook so that it retrieves up to date data in one clic.
 <ul>
@@ -310,7 +319,7 @@
 <li>Hint 2. Inspect the BQL syntax in Bloomberg formula cells, ammend accordingly.</li>
 </ul>
 </li>
-<li>Using VBA, make your workbook flexible. Ammend your workbook so that it can retrieve data for any set of stocks/indexes &amp; market/book fields at various frequencies (year, month, week, day), from and to any date.
+<li>Using VBA, make your workbook flexible. Ammend your workbook so that it can retrieve data for any set of stocks/indexes &amp; market/book fields at various frequencies (year, month, week, day), from and to any date. The user should only have to list the tickers/fields and set the parameters on one sheet.
 <ul>
 <li>Hint 1. Object oriented programming could help; excel table objects in particular.</li>
 <li>Hint 2. Create an update sheet with tickers list, parameters (frequency, start and end dates) and fields. This sheet could also be use to host the contemporaneous dataset.</li>
@@ -322,16 +331,38 @@
 </ul>
 </li>
 </ul>
-<p>You now have a fully customizable &amp; portable tool to retrieve financial data from Bloomberg and now it’s time to use it.</p>
+<p>You now have a fully portable &amp; customizable tool to retrieve financial data from Bloomberg and it’s now time to use it.</p>
 </div>
 </div>
-<div id="load" class="section level2">
-<h2 class="hasAnchor">
-<a href="#load" class="anchor"></a>Load</h2>
+<div id="load" class="section level3">
+<h3 class="hasAnchor">
+<a href="#load" class="anchor"></a><em>load</em>
+</h3>
+<p>Using R or Python (example solutions will be provided for both programming languages), load the workbook data in memory. Organise the data in two dataframes, one for the historical times series, the other for static (contemporaneous) data. The time series dataframe should have a two-level row index including tickers &amp; dates while columns should host the corresponding time series; the dataframe should broadly look like this:</p>
+<pre><code>## # A tibble: 62,696 x 11
+##    ticker    Date       PX_LAST BOOK_VAL_PER_SH TRAIL_12M_EPS
+##    &lt;chr&gt;     &lt;date&gt;       &lt;dbl&gt;           &lt;dbl&gt;         &lt;dbl&gt;
+##  1 RAY Index 2016-10-04   1274.            476.          58.4
+##  2 RAY Index 2016-10-05   1280.            476.          58.4
+##  3 RAY Index 2016-10-06   1279.            476.          58.4
+##  4 RAY Index 2016-10-07   1275.            476.          58.5
+##  5 RAY Index 2016-10-10   1281.            476.          58.5
+##  6 RAY Index 2016-10-11   1265.            476.          58.5
+##  7 RAY Index 2016-10-12   1266.            476.          58.5
+##  8 RAY Index 2016-10-13   1261.            476.          58.5
+##  9 RAY Index 2016-10-14   1261.            476.          58.5
+## 10 RAY Index 2016-10-17   1258.            476.          58.6
+## # ... with 62,686 more rows, and 6 more variables:
+## #   TRAIL_12M_DVD_PER_SH &lt;dbl&gt;, SHORT_AND_LONG_TERM_DEBT &lt;dbl&gt;,
+## #   TOTAL_EQUITY &lt;dbl&gt;, BS_CUR_ASSET_REPORT &lt;dbl&gt;, BS_CUR_LIAB &lt;dbl&gt;,
+## #   SALES_REV_TURN &lt;dbl&gt;</code></pre>
+<p>The static dataset on the other hand should be row-indexed by tickers and have columns hosting the corresponding static fields.</p>
 </div>
-<div id="transform" class="section level2">
-<h2 class="hasAnchor">
-<a href="#transform" class="anchor"></a>Transform</h2>
+<div id="transform" class="section level3">
+<h3 class="hasAnchor">
+<a href="#transform" class="anchor"></a><em>transform</em>
+</h3>
+</div>
 </div>
 </div>
   </div>
@@ -340,7 +371,9 @@
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Report a bug at <br><a href="NA">NA</a>
+<li>Browse source code at <br><a href="https://github.com/strathclyde/befftafall2018">https://​github.com/​strathclyde/​befftafall2018</a>
+</li>
+<li>Report a bug at <br><a href="https://github.com/strathclyde/befftafall2018/issues">https://​github.com/​strathclyde/​befftafall2018/​issues</a>
 </li>
 </ul>
 </div>
@@ -358,13 +391,7 @@
 </ul>
 </div>
 
-      <div class="dev-status">
-<h2>Dev status</h2>
-<ul class="list-unstyled">
-<li><a href="https://travis-ci.org/strathclyde/befftafall2018"><img src="https://travis-ci.org/strathclyde/befftafall2018.svg?branch=master" alt="Travis build status"></a></li>
-</ul>
-</div>
-</div>
+      </div>
 
 </div>
 
