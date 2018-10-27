@@ -1,10 +1,3 @@
-[![Travis build status](https://travis-ci.org/strathclyde/befftafall2018.svg?branch=master)](https://travis-ci.org/strathclyde/befftafall2018)
-
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/strathclyde/befftafall2018?branch=master&svg=true)](https://ci.appveyor.com/project/strathclyde/befftafall2018)
-
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-
-
 full stack data-science finance (small) project
 ================
 Olivier Bauthéac
@@ -96,6 +89,38 @@ symbols.
     the contemporaneous dataset; try to fix that problem somehow.
       - Hint 1. VBA events could help.
 
+You now have a fully customizable & portable tool to retrieve financial
+data from Bloomberg and now it’s time to use it.
+
 ## Load
+
+In R or Python (examplesolutions will be provided for both programming
+languages), load the workbook data in memory. Organise the data in two
+dataframes, one for the historical times series, the other for static
+(contemporaneous) data. The time series dataframe should have a
+two-level row index including tickers & dates while columns should host
+the corresponding time series; the dataframe structure should look as
+follow:
+
+    ## # A tibble: 62,696 x 11
+    ##    ticker    Date       PX_LAST BOOK_VAL_PER_SH TRAIL_12M_EPS
+    ##    <chr>     <date>       <dbl>           <dbl>         <dbl>
+    ##  1 RAY Index 2016-10-04   1274.            476.          58.4
+    ##  2 RAY Index 2016-10-05   1280.            476.          58.4
+    ##  3 RAY Index 2016-10-06   1279.            476.          58.4
+    ##  4 RAY Index 2016-10-07   1275.            476.          58.5
+    ##  5 RAY Index 2016-10-10   1281.            476.          58.5
+    ##  6 RAY Index 2016-10-11   1265.            476.          58.5
+    ##  7 RAY Index 2016-10-12   1266.            476.          58.5
+    ##  8 RAY Index 2016-10-13   1261.            476.          58.5
+    ##  9 RAY Index 2016-10-14   1261.            476.          58.5
+    ## 10 RAY Index 2016-10-17   1258.            476.          58.6
+    ## # ... with 62,686 more rows, and 6 more variables:
+    ## #   TRAIL_12M_DVD_PER_SH <dbl>, SHORT_AND_LONG_TERM_DEBT <dbl>,
+    ## #   TOTAL_EQUITY <dbl>, BS_CUR_ASSET_REPORT <dbl>, BS_CUR_LIAB <dbl>,
+    ## #   SALES_REV_TURN <dbl>
+
+The static dataset on the other hand should be row-indexed by tickers
+and have columns hosting the corresponding static fields.
 
 ## Transform
