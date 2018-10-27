@@ -4,6 +4,13 @@ author: "Olivier Bauthéac"
 output: github_document
 ---
 
+[![Travis build status](https://travis-ci.org/strathclyde/befftafall2018.svg?branch=master)](https://travis-ci.org/strathclyde/befftafall2018)
+
+[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/strathclyde/befftafall2018?branch=master&svg=true)](https://ci.appveyor.com/project/strathclyde/befftafall2018)
+
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
+
+
 # preprocessing (ELT)
 
 ## extract
