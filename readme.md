@@ -10,10 +10,18 @@ Olivier Bauthéac
 
 # full stack data-science finance (small) project
 
+
 ## *preprocessing (ELT)*
 
 ### *extract*
 
+=======
+
+## *preprocessing (ELT)*
+
+### *extract*
+
+>>>>>>> ef5b8d42fb029094ed6b68d5ecbda2838f184848
 #### minimum required
 
 In an excel woorkbook, query Bloomberg for historical (bdh) as well as
