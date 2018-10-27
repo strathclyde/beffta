@@ -77,11 +77,38 @@ You now have a fully customizable & portable tool to retrieve financial data fro
 
 
 
-
-
 ## Load
 
+```{r, include = FALSE}
+library(readxl); library(dplyr); library(data.table)
 
+path <- 'data-raw/pullit.xlsm'; ticker_market <- 'RAY Index'; window <- 252L
+
+ticker_firms <- read_excel(path, sheet = "update", range = cell_cols("D")) %>% filter(ticker != ticker_market)
+
+static <- read_excel(path, sheet = "update", range = cell_cols("D:H")) %>% 
+  filter(ticker != ticker_market) %>% mutate_at(vars(-ticker), funs(as.numeric))
+
+tickers <- gsub(pattern = '/', replacement = '~', x = c(ticker_market, ticker_firms$ticker))
+
+historical <- lapply(tickers, function(x) read_excel(path, sheet = x, skip = 1L) %>% 
+                       mutate(Date = as.Date(Date), ticker = x) %>% 
+                       mutate_at(vars(-c('ticker', 'Date')), funs(as.numeric)) %>% 
+                       filter(! is.na(Date))) %>% 
+  rbindlist()
+```
+
+In R or Python (examplesolutions will be provided for both programming languages), load the workbook data in memory. Organise the data in two dataframes, one for the historical times series, the other for static (contemporaneous) data. The time series dataframe should have a two-level row index including tickers & dates while columns should host the corresponding time series; the dataframe structure should look as follow:
+
+```{r, message = FALSE, echo = FALSE}
+as_tibble(select(historical, ticker, everything()))
+```
+
+The static dataset on the other hand should be row-indexed by tickers and have columns hosting the corresponding static fields; the dataframe structure should look as follow:
+
+```{r, message = FALSE, echo = FALSE}
+as_tibble(static)
+```
 
 
 ## Transform
