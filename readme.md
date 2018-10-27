@@ -121,6 +121,26 @@ follow:
     ## #   SALES_REV_TURN <dbl>
 
 The static dataset on the other hand should be row-indexed by tickers
+<<<<<<< HEAD
 and have columns hosting the corresponding static fields.
+=======
+and have columns hosting the corresponding static fields; the dataframe
+structure should look as follow:
+
+    ## # A tibble: 120 x 5
+    ##    ticker  EQY_SH_OUT NUMBER_OF_DIRECTO~ NUMBER_OF_WOMEN~ BOARD_MEETINGS_~
+    ##    <chr>        <dbl>              <dbl>            <dbl>            <dbl>
+    ##  1 KHC US~      1219.                 11                2                5
+    ##  2 PSX US~       464.                  9                3                6
+    ##  3 VLO US~       427.                 10                4                7
+    ##  4 ADM US~       560.                 12                2               10
+    ##  5 HPE US~      1472.                 12                5               13
+    ##  6 NUE US~       316.                  8                2                4
+    ##  7 DHI US~       377.                  5                1                7
+    ##  8 HFC US~       176.                 11                2               15
+    ##  9 KSU US~       102.                 11                3                5
+    ## 10 WRK US~       255.                 13                2                8
+    ## # ... with 110 more rows
+>>>>>>> 5eecc7b5e711901e192970d8e28a7ef71635f091
 
 ## Transform

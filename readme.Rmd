@@ -100,6 +100,7 @@ historical <- lapply(tickers, function(x) read_excel(path, sheet = x, skip = 1L)
 
 In R or Python (examplesolutions will be provided for both programming languages), load the workbook data in memory. Organise the data in two dataframes, one for the historical times series, the other for static (contemporaneous) data. The time series dataframe should have a two-level row index including tickers & dates while columns should host the corresponding time series; the dataframe structure should look as follow:
 
+
 ```{r, message = FALSE, echo = FALSE}
 as_tibble(select(historical, ticker, everything()))
 ```
