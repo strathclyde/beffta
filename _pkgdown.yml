@@ -1,0 +1,6 @@
+navbar:
+  title: 'befftafall2018'
+  type: inverse
+  left:
+    - text: 'home'
+      href: index.html
