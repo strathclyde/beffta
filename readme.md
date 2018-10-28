@@ -10,12 +10,12 @@ output:
     variant: markdown_github
 ---
 
-# Strathclyde Business School, finTech MSc <img src="man/figures/logo.png" align = "right" />
+# Strathclyde Business School, finTech MSc <img src="man/figures/logo.png" align="right" />
 
 
 Welcome to the fall 2018 iteration of the 'becoming an effective technoloy analyst' class as part of the Strathclyde Business School, finTech MSc program coursework.  
 
-Follow the instructions below for your data-science finance assignment. Examples solutions in both the R and Python programming languaes will be provided in due time.
+Follow the instructions below for your data-science finance assignement. Examples solutions in both the R and Python programming languaes will be provided in due time.
 
 
 # full stack data-science finance (small) project
@@ -79,13 +79,13 @@ Contemporaneous data on the other hand should include the number of shares outst
 
 * Using VBA, make your workbook flexible. Ammend your workbook so that it can retrieve data for any set of stocks/indexes & market/book fields at various frequencies (year, month, week, day), from and to any date. The user should only have to list the tickers/fields and set the parameters on one sheet.
   + Hint 1. Object oriented programming could help; excel table objects in particular.
-  + Hint 2. Create an 'update' sheet with tickers list, parameters (frequency, start and end dates) and fields. This sheet could also be use to host the contemporaneous dataset.
+  + Hint 2. Create an update sheet with tickers list, parameters (frequency, start and end dates) and fields. This sheet could also be use to host the contemporaneous dataset.
 
 * Using VBA, make your workbook fully portable. If you open your workbook without a live Bloomberg connection you'll notice you loose the contemporaneous dataset; try to fix that problem somehow. 
   + Hint 1. VBA events could help.
   
 
-You now have a fully portable, customizable Bloomberg financial data extraction tool and now it's time to use it.
+You now have a fully portable & customizable tool to retrieve financial data from Bloomberg and it's now time to use it.
 
 
 
@@ -112,7 +112,7 @@ historical <- lapply(tickers, function(x) read_excel(path, sheet = x, skip = 1L)
 Using R or Python (example solutions will be provided for both programming languages), load the workbook data in memory. Organise the data in two dataframes, one for the historical times series, the other for static (contemporaneous) data. The time series dataframe should have a two-level row index including tickers & dates while columns should host the corresponding time series; the dataframe should broadly look like this:
 
 ```{r, message = FALSE, echo = FALSE}
-select(historical, ticker, everything())
+as_tibble(select(historical, ticker, everything()))
 ```
 
 The static dataset on the other hand should be row-indexed by tickers and have columns hosting the corresponding static data fields. For static data, only numeric fields should be loaded with long company name and description fields left to the excel workbook for reference.
