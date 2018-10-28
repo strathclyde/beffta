@@ -5,7 +5,9 @@
 ---
 title: "Strathclyde Business School, finTech MSc - becoming an effective technology analyst - fall 2018"
 author: "Olivier Bauthéac"
-output: github_document
+output:
+  md_document:
+    variant: markdown_github
 ---
 
 # Strathclyde Business School, finTech MSc <img src="man/figures/logo.png" align="right" />
