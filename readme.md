@@ -1,8 +1,3 @@
-[![Travis build status](https://travis-ci.org/strathclyde/befftafall2018.svg?branch=master)](https://travis-ci.org/strathclyde/befftafall2018)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/strathclyde/befftafall2018?branch=master&svg=true)](https://ci.appveyor.com/project/strathclyde/befftafall2018)
-[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)  
-
-
 Strathclyde Business School, finTech MSc - becoming an effective
 technology analyst - fall 2018
 ================
@@ -10,19 +5,11 @@ Olivier Bauthéac
 
 # full stack data-science finance (small) project
 
-
 ## *preprocessing (ELT)*
 
 ### *extract*
 
-=======
-
-## *preprocessing (ELT)*
-
-### *extract*
-
->>>>>>> ef5b8d42fb029094ed6b68d5ecbda2838f184848
-#### minimum required
+#### *minimum required*
 
 In an excel woorkbook, query Bloomberg for historical (bdh) as well as
 contemporaneous (bdp) data for a market index as well as a broad
@@ -82,7 +69,7 @@ the board, number of board meetings per year, long company name and
 companie description. Explore Bloomberg to find the corresponding field
 symbols.
 
-#### going further
+#### *going further*
 
   - Using VBA, make your workbook updatable. Ammend your workbook so
     that it retrieves up to date data in one clic.
@@ -138,6 +125,79 @@ like this:
     ## #   SALES_REV_TURN <dbl>
 
 The static dataset on the other hand should be row-indexed by tickers
-and have columns hosting the corresponding static fields.
+and have columns hosting the corresponding static data fields. For
+static data, only numeric fields should be loaded with long company name
+and description fields left to the excel workbook for reference.
 
 ### *transform*
+
+#### *market betas*
+
+##### *minimum required*
+
+Using the most recent samples in the time series data, calculate the
+individual 1-year market betas for the stocks. Show calculations and
+comment. Comments should include a detailled discussion on what market
+betas are, what they represent for stocks as well as details about the
+corresponding model. Plot your results as a histogram and comment. Hint:
+there are 252 trading days in a year.
+
+##### *going further*
+
+Using all the time series samples, calculate the individual rolling
+1-year market betas for the stocks. Randomly select five stocks and
+display their corresponding rolling betas time series on the same
+lineplot.
+
+#### *features interactions*
+
+  - Using the most recent samples in the time series dataset, for each
+    name construct a set of feature interactions that include the
+    following popular financial ratios: price to book, price to
+    earnings, dividend yield and gearing. Show calculations and discuss
+    these concepts from a corporate finance standpoint.
+  - Explore this new dataset. Hint: use visualization tools.
+
+## *modeling*
+
+### *minimum required*
+
+#### *cluster analysis (unsupervised learning)*
+
+##### *hierarchical clustering*
+
+After normalizing the ratios dataset above to zero means and unit
+variances, apply hierachical clustering and draw the corresponding
+dendogram. What seems to be the optimal number of clusters for this
+dataset? Explain.
+
+##### *k-means*
+
+  - Implement a two-cluster k-means analysis on this dataset. Explore
+    the resulting cluster characteristics: calculate the cluster
+    specific means for each ratio. Comment on the results and propose
+    labels for the two classes. Hint: how would Warren Buffett most
+    likely answer this?
+  - Label individual names accordingly in a new ‘classes’ dataframe.
+
+### *going further*
+
+#### *classification (supervised learning)*
+
+  - Create a betas dataset that subsets the most recent (last sample
+    date) samples from the rolling maket betas dataset above. Merge the
+    classes, ratios, static and betas datasets together.
+  - Implement a classification analysis on the resulting dataset where
+    the target is name’s class as attributed above. Use various
+    classifiers including logistic regression, k-nearest-neighbours,
+    support vector machines, decision tree, random forest and neural
+    network (multi-layer perceptrons). Use 75-25% for training-test sets
+    split and 5-fold cross-validation.
+  - For each model:
+      - Show training and test set confusion matrices and calculate
+        corresponding precision & recall indicators; comment. Your
+        comments should include a discussion on precision and recall.
+      - Explain what the model does and how. Discuss model paramaters
+        and how they contribute to model fine-tunning.
+      - Find model optimal parameters using gridsearch and run model
+        accordingly. Show corresponding learning curves.
