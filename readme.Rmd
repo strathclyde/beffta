@@ -15,7 +15,7 @@ output:
 
 Welcome to the fall 2018 iteration of the 'becoming an effective technoloy analyst' class as part of the Strathclyde Business School, finTech MSc program coursework.  
 
-Follow the instructions below for your data-science finance assignment. Examples solutions in both the R and Python programming languaes will be provided in due time.
+Follow the instructions below for your data-science finance assignment. Examples solutions in both the R and Python programming languages will be provided in due time.
 
 
 # full stack data-science finance (small) project
@@ -69,17 +69,17 @@ current assets        | BS_CUR_ASSET_REPORT
 current liabilities   | BS_CUR_LIAB
 sales                 | SALES_REV_TURN
 
-Contemporaneous data on the other hand should include the number of shares outstanding, number of directors on the board, number of women on the board, number of board meetings per year, long company name and companie description. Explore Bloomberg to find the corresponding field symbols.
+Contemporaneous data on the other hand should include the number of shares outstanding, number of directors on the board, number of women on the board, number of board meetings per year, long company name and company description. Explore Bloomberg to find the corresponding field symbols.
 
 
 #### *going further*
-* Using VBA, make your workbook updatable. Ammend your workbook so that it retrieves up to date data in one clic.
+* Using VBA, make your workbook updatable. Ammend your workbook so that it retrieves up to date data in one clic. I.e. if in the future you open the workbook you created today, the workbook should be able to retrieve up to date data.
   + Hint 1. Update doesn't necessarily mean adding most recent values to an existing time series. Requerying the whole data up to the most recent date would work as well.
   + Hint 2. Inspect the BQL syntax in Bloomberg formula cells, ammend accordingly.
 
 * Using VBA, make your workbook flexible. Ammend your workbook so that it can retrieve data for any set of stocks/indexes & market/book fields at various frequencies (year, month, week, day), from and to any date. The user should only have to list the tickers/fields and set the parameters on one sheet.
   + Hint 1. Object oriented programming could help; excel table objects in particular.
-  + Hint 2. Create an 'update' sheet with tickers list, parameters (frequency, start and end dates) and fields. This sheet could also be use to host the contemporaneous dataset.
+  + Hint 2. Create an 'update' sheet with tickers list, parameters (frequency, start and end dates) and fields. This sheet could also be used to host the contemporaneous dataset.
 
 * Using VBA, make your workbook fully portable. If you open your workbook without a live Bloomberg connection you'll notice you loose the contemporaneous dataset; try to fix that problem somehow. 
   + Hint 1. VBA events could help.
@@ -126,7 +126,7 @@ The static dataset on the other hand should be row-indexed by tickers and have c
 Using the most recent samples in the time series data, calculate the individual 1-year market betas for the stocks. Show calculations and comment. Comments should include a detailled discussion on what market betas are, what they represent for stocks as well as details about the corresponding model. Plot your results as a histogram and comment. Hint: there are 252 trading days in a year.
 
 ##### *going further*
-Using all the time series samples, calculate the individual rolling 1-year market betas for the stocks. Randomly select five stocks and display their corresponding rolling betas time series on the same lineplot.
+Using all the time series samples, calculate the individual rolling 1-year market betas for the stocks. Randomly select five stocks and display their corresponding rolling beta time series on the same lineplot.
 
 
 #### *features interactions*

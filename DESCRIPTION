@@ -1,6 +1,6 @@
 Package: befftafall2018
 Title: becoming an effective technology analyst
-Version: 0.0.0.9000
+Version: 0.0.1.0
 Authors@R: person("Olivier", "Bauthéac", email = "o.bautheac@gmail.com", role = c("aut", "cre"))
 Description: This package host assignment material for the "becoming an effective technology analyst" 
   fall 2018 class as part of the coursework of the Strathclyde Business School MSc fintech program.
