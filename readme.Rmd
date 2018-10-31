@@ -54,7 +54,7 @@ CHEF US Equity    | FTV US Equity   | LGND US Equity  | SCL US Equity   | ZBRA U
 
 The historical time series should include the following market & book data fields:
 
-field                 | Bloomberg symbol                       
+Field                 | Bloomberg symbol                       
 ----------------------|-----------------
 close price           | PX_LAST
 book value per share  | BOOK_VAL_PER_SH
@@ -69,11 +69,8 @@ sales                 | SALES_REV_TURN
 Contemporaneous data on the other hand should include the number of shares outstanding, number of directors on the board, number of women on the board, number of board meetings per year, long company name and company description. Explore Bloomberg to find the corresponding field symbols.
 
 
-<<<<<<< HEAD
+
 #### *Going further*
-=======
-#### *going further*
->>>>>>> deeee37dd6e574a92cc7c85d6d13142bd8878848
 * Using VBA, make your workbook updatable. Ammend your workbook so that it retrieves up to date data in one clic. I.e. if in the future you open the workbook you created today, the workbook should be able to retrieve up to date data.
   + Hint 1. Update doesn't necessarily mean adding most recent values to an existing time series. Requerying the whole data up to the most recent date would work as well.
   + Hint 2. Inspect the BQL syntax in Bloomberg formula cells, ammend accordingly.
@@ -126,11 +123,8 @@ The static dataset on the other hand should be row-indexed by tickers and have c
 ##### *Minimum required*
 Using the most recent samples in the time series data, calculate the individual 1-year market betas for the stocks. Show calculations and comment. Comments should include a detailled discussion on what market betas are, what they represent for stocks as well as details about the corresponding model. Plot your results as a histogram and comment. Hint: there are 252 trading days in a year.
 
-<<<<<<< HEAD
+
 ##### *Going further*
-=======
-##### *going further*
->>>>>>> deeee37dd6e574a92cc7c85d6d13142bd8878848
 Using all the time series samples, calculate the individual rolling 1-year market betas for the stocks. Randomly select five stocks and display their corresponding rolling beta time series on the same lineplot.
 
 
