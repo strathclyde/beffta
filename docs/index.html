@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">befftafall2018</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.0.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.0.1.0</span>
       </span>
     </div>
 
@@ -68,23 +68,22 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#strathclyde-business-school-fintech-msc" class="anchor"></a>Strathclyde Business School, finTech MSc <img src="reference/figures/logo.png" align="right">
 </h1></div>
-<p>Welcome to the fall 2018 iteration of the ‘becoming an effective technoloy analyst’ class as part of the Strathclyde Business School, finTech MSc program coursework.</p>
-<p>Follow the instructions below for your data-science finance assignement. Examples solutions in both the R and Python programming languaes will be provided in due time.</p>
+<p>As part of the fall 2018 iteration of the ‘becoming an effective technoloy analyst’ class of the Strathclyde Business School finTech MSc program coursework, below are the instructions for your data-science finance assignment. Examples solutions in both the R and Python programming languages will be provided in due time.</p>
 </div>
 <div id="full-stack-data-science-finance-small-project" class="section level1">
 <h1 class="hasAnchor">
-<a href="#full-stack-data-science-finance-small-project" class="anchor"></a>full stack data-science finance (small) project</h1>
+<a href="#full-stack-data-science-finance-small-project" class="anchor"></a>Full stack data-science finance (small) project</h1>
 <div id="preprocessing-elt" class="section level2">
 <h2 class="hasAnchor">
-<a href="#preprocessing-elt" class="anchor"></a><em>preprocessing (ELT)</em>
+<a href="#preprocessing-elt" class="anchor"></a><em>Preprocessing (ELT)</em>
 </h2>
 <div id="extract" class="section level3">
 <h3 class="hasAnchor">
-<a href="#extract" class="anchor"></a><em>extract</em>
+<a href="#extract" class="anchor"></a><em>Extract</em>
 </h3>
 <div id="minimum-required" class="section level4">
 <h4 class="hasAnchor">
-<a href="#minimum-required" class="anchor"></a><em>minimum required</em>
+<a href="#minimum-required" class="anchor"></a><em>Minimum required</em>
 </h4>
 <p>In an excel woorkbook, query Bloomberg for historical (bdh) as well as contemporaneous (bdp) data for a market index as well as a broad cross-section of U.S. stocks. Historical data should be retrieved from October 1<sup>st</sup> 2016 to today at the daily frequency on individual ticker specific sheets (one sheet per name). All names’ contemporaneous data, on the other hand, should sit on a single sheet. The Bloomberg ticker for the market index is ‘RAY Index’ while those for the corporation names are listed below:</p>
 <table class="table">
@@ -311,14 +310,14 @@
 </tr>
 </tbody>
 </table>
-<p>Contemporaneous data on the other hand should include the number of shares outstanding, number of directors on the board, number of women on the board, number of board meetings per year, long company name and companie description. Explore Bloomberg to find the corresponding field symbols.</p>
+<p>Contemporaneous data on the other hand should include the number of shares outstanding, number of directors on the board, number of women on the board, number of board meetings per year, long company name and company description. Explore Bloomberg to find the corresponding field symbols.</p>
 </div>
 <div id="going-further" class="section level4">
 <h4 class="hasAnchor">
-<a href="#going-further" class="anchor"></a><em>going further</em>
+<a href="#going-further" class="anchor"></a><em>Going further</em>
 </h4>
 <ul>
-<li>Using VBA, make your workbook updatable. Ammend your workbook so that it retrieves up to date data in one clic.
+<li>Using VBA, make your workbook updatable. Ammend your workbook so that it retrieves up to date data in one clic. I.e. if in the future you open the workbook you created today, the workbook should be able to retrieve up to date data.
 <ul>
 <li>Hint 1. Update doesn’t necessarily mean adding most recent values to an existing time series. Requerying the whole data up to the most recent date would work as well.</li>
 <li>Hint 2. Inspect the BQL syntax in Bloomberg formula cells, ammend accordingly.</li>
@@ -327,7 +326,7 @@
 <li>Using VBA, make your workbook flexible. Ammend your workbook so that it can retrieve data for any set of stocks/indexes &amp; market/book fields at various frequencies (year, month, week, day), from and to any date. The user should only have to list the tickers/fields and set the parameters on one sheet.
 <ul>
 <li>Hint 1. Object oriented programming could help; excel table objects in particular.</li>
-<li>Hint 2. Create an update sheet with tickers list, parameters (frequency, start and end dates) and fields. This sheet could also be use to host the contemporaneous dataset.</li>
+<li>Hint 2. Create an ‘update’ sheet with tickers list, parameters (frequency, start and end dates) and fields. This sheet could also be used to host the contemporaneous dataset.</li>
 </ul>
 </li>
 <li>Using VBA, make your workbook fully portable. If you open your workbook without a live Bloomberg connection you’ll notice you loose the contemporaneous dataset; try to fix that problem somehow.
@@ -336,57 +335,76 @@
 </ul>
 </li>
 </ul>
-<p>You now have a fully portable &amp; customizable tool to retrieve financial data from Bloomberg and it’s now time to use it.</p>
+<p>You now have a fully portable, customizable Bloomberg financial data extraction tool and now it’s time to use it.</p>
 </div>
 </div>
 <div id="load" class="section level3">
 <h3 class="hasAnchor">
-<a href="#load" class="anchor"></a><em>load</em>
+<a href="#load" class="anchor"></a><em>Load</em>
 </h3>
 <p>Using R or Python (example solutions will be provided for both programming languages), load the workbook data in memory. Organise the data in two dataframes, one for the historical times series, the other for static (contemporaneous) data. The time series dataframe should have a two-level row index including tickers &amp; dates while columns should host the corresponding time series; the dataframe should broadly look like this:</p>
-<pre><code>## # A tibble: 62,696 x 11
-##    ticker    Date       PX_LAST BOOK_VAL_PER_SH TRAIL_12M_EPS
-##    &lt;chr&gt;     &lt;date&gt;       &lt;dbl&gt;           &lt;dbl&gt;         &lt;dbl&gt;
-##  1 RAY Index 2016-10-04   1274.            476.          58.4
-##  2 RAY Index 2016-10-05   1280.            476.          58.4
-##  3 RAY Index 2016-10-06   1279.            476.          58.4
-##  4 RAY Index 2016-10-07   1275.            476.          58.5
-##  5 RAY Index 2016-10-10   1281.            476.          58.5
-##  6 RAY Index 2016-10-11   1265.            476.          58.5
-##  7 RAY Index 2016-10-12   1266.            476.          58.5
-##  8 RAY Index 2016-10-13   1261.            476.          58.5
-##  9 RAY Index 2016-10-14   1261.            476.          58.5
-## 10 RAY Index 2016-10-17   1258.            476.          58.6
-## # ... with 62,686 more rows, and 6 more variables:
-## #   TRAIL_12M_DVD_PER_SH &lt;dbl&gt;, SHORT_AND_LONG_TERM_DEBT &lt;dbl&gt;,
-## #   TOTAL_EQUITY &lt;dbl&gt;, BS_CUR_ASSET_REPORT &lt;dbl&gt;, BS_CUR_LIAB &lt;dbl&gt;,
-## #   SALES_REV_TURN &lt;dbl&gt;</code></pre>
+<pre><code>##                ticker       Date  PX_LAST BOOK_VAL_PER_SH TRAIL_12M_EPS
+##     1:      RAY Index 2016-10-04 1273.897        476.0300       58.4400
+##     2:      RAY Index 2016-10-05 1279.598        476.0500       58.4400
+##     3:      RAY Index 2016-10-06 1279.430        476.0500       58.4300
+##     4:      RAY Index 2016-10-07 1274.602        476.0700       58.4800
+##     5:      RAY Index 2016-10-10 1281.312        476.0800       58.4700
+##    ---                                                                 
+## 62692: USAK US Equity 2018-10-17   17.830          8.4359        0.7559
+## 62693: USAK US Equity 2018-10-18   17.310          8.4359        0.7559
+## 62694: USAK US Equity 2018-10-19   17.410          8.4359        0.7559
+## 62695: USAK US Equity 2018-10-22   18.240          8.4359        0.7559
+## 62696: USAK US Equity 2018-10-23   17.310          8.4359        0.7559
+##        TRAIL_12M_DVD_PER_SH SHORT_AND_LONG_TERM_DEBT TOTAL_EQUITY
+##     1:                   NA                  566.360      504.630
+##     2:                   NA                  566.370      504.650
+##     3:                   NA                  566.340      504.640
+##     4:                   NA                  566.360      504.660
+##     5:                   NA                  566.350      504.660
+##    ---                                                           
+## 62692:                    0                   88.958       70.125
+## 62693:                    0                   88.958       70.125
+## 62694:                    0                   88.958       70.125
+## 62695:                    0                   88.958       70.125
+## 62696:                    0                   88.958       70.125
+##        BS_CUR_ASSET_REPORT BS_CUR_LIAB SALES_REV_TURN
+##     1:             339.210     234.730             NA
+##     2:             339.340     234.820             NA
+##     3:             339.340     234.820             NA
+##     4:             339.580     234.980             NA
+##     5:             339.610     235.000             NA
+##    ---                                               
+## 62692:              78.798      71.077        135.381
+## 62693:              78.798      71.077        135.381
+## 62694:              78.798      71.077        135.381
+## 62695:              78.798      71.077        135.381
+## 62696:              78.798      71.077        135.381</code></pre>
 <p>The static dataset on the other hand should be row-indexed by tickers and have columns hosting the corresponding static data fields. For static data, only numeric fields should be loaded with long company name and description fields left to the excel workbook for reference.</p>
 </div>
 <div id="transform" class="section level3">
 <h3 class="hasAnchor">
-<a href="#transform" class="anchor"></a><em>transform</em>
+<a href="#transform" class="anchor"></a><em>Transform</em>
 </h3>
 <div id="market-betas" class="section level4">
 <h4 class="hasAnchor">
-<a href="#market-betas" class="anchor"></a><em>market betas</em>
+<a href="#market-betas" class="anchor"></a><em>Market betas</em>
 </h4>
 <div id="minimum-required-1" class="section level5">
 <h5 class="hasAnchor">
-<a href="#minimum-required-1" class="anchor"></a><em>minimum required</em>
+<a href="#minimum-required-1" class="anchor"></a><em>Minimum required</em>
 </h5>
 <p>Using the most recent samples in the time series data, calculate the individual 1-year market betas for the stocks. Show calculations and comment. Comments should include a detailled discussion on what market betas are, what they represent for stocks as well as details about the corresponding model. Plot your results as a histogram and comment. Hint: there are 252 trading days in a year.</p>
 </div>
 <div id="going-further-1" class="section level5">
 <h5 class="hasAnchor">
-<a href="#going-further-1" class="anchor"></a><em>going further</em>
+<a href="#going-further-1" class="anchor"></a><em>Going further</em>
 </h5>
-<p>Using all the time series samples, calculate the individual rolling 1-year market betas for the stocks. Randomly select five stocks and display their corresponding rolling betas time series on the same lineplot.</p>
+<p>Using all the time series samples, calculate the individual rolling 1-year market betas for the stocks. Randomly select five stocks and display their corresponding rolling beta time series on the same lineplot.</p>
 </div>
 </div>
 <div id="features-interactions" class="section level4">
 <h4 class="hasAnchor">
-<a href="#features-interactions" class="anchor"></a><em>features interactions</em>
+<a href="#features-interactions" class="anchor"></a><em>Features interactions</em>
 </h4>
 <ul>
 <li>Using the most recent samples in the time series dataset, for each name construct a set of feature interactions that include the following popular financial ratios: price to book, price to earnings, dividend yield and gearing. Show calculations and discuss these concepts from a corporate finance standpoint.</li>
@@ -397,25 +415,25 @@
 </div>
 <div id="modeling" class="section level2">
 <h2 class="hasAnchor">
-<a href="#modeling" class="anchor"></a><em>modeling</em>
+<a href="#modeling" class="anchor"></a><em>Modeling</em>
 </h2>
 <div id="minimum-required-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#minimum-required-2" class="anchor"></a><em>minimum required</em>
+<a href="#minimum-required-2" class="anchor"></a><em>Minimum required</em>
 </h3>
 <div id="cluster-analysis-unsupervised-learning" class="section level4">
 <h4 class="hasAnchor">
-<a href="#cluster-analysis-unsupervised-learning" class="anchor"></a><em>cluster analysis (unsupervised learning)</em>
+<a href="#cluster-analysis-unsupervised-learning" class="anchor"></a><em>Cluster analysis (unsupervised learning)</em>
 </h4>
 <div id="hierarchical-clustering" class="section level5">
 <h5 class="hasAnchor">
-<a href="#hierarchical-clustering" class="anchor"></a><em>hierarchical clustering</em>
+<a href="#hierarchical-clustering" class="anchor"></a><em>Hierarchical clustering</em>
 </h5>
 <p>After normalizing the ratios dataset above to zero means and unit variances, apply hierachical clustering and draw the corresponding dendogram. What seems to be the optimal number of clusters for this dataset? Explain.</p>
 </div>
 <div id="k-means" class="section level5">
 <h5 class="hasAnchor">
-<a href="#k-means" class="anchor"></a><em>k-means</em>
+<a href="#k-means" class="anchor"></a><em>K-means</em>
 </h5>
 <ul>
 <li>Implement a two-cluster k-means analysis on this dataset. Explore the resulting cluster characteristics: calculate the cluster specific means for each ratio. Comment on the results and propose labels for the two classes. Hint: how would Warren Buffett most likely answer this?</li>
@@ -426,11 +444,11 @@
 </div>
 <div id="going-further-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#going-further-2" class="anchor"></a><em>going further</em>
+<a href="#going-further-2" class="anchor"></a><em>Going further</em>
 </h3>
 <div id="classification-supervised-learning" class="section level4">
 <h4 class="hasAnchor">
-<a href="#classification-supervised-learning" class="anchor"></a><em>classification (supervised learning)</em>
+<a href="#classification-supervised-learning" class="anchor"></a><em>Classification (supervised learning)</em>
 </h4>
 <ul>
 <li>Create a betas dataset that subsets the most recent (last sample date) samples from the rolling maket betas dataset above. Merge the classes, ratios, static and betas datasets together.</li>
